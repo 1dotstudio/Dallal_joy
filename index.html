@@ -102,6 +102,23 @@ footer{background:var(--dark);color:#F5EFE4;padding:36px 44px;display:flex;justi
   footer{flex-direction:column;text-align:center;}
   .strip{gap:20px;}
 }
+
+.wolt-toggle { cursor:pointer; border:none; }
+.wolt-drop {
+  display:none; position:absolute; top:calc(100% + 6px); right:0;
+  background:var(--dark); border:1px solid rgba(196,146,74,.3);
+  border-radius:3px; min-width:180px; z-index:999; overflow:hidden;
+}
+.wolt-drop.open { display:block; }
+.wolt-drop-up { top:auto; bottom:calc(100% + 6px); }
+.wolt-drop a {
+  display:block; padding:14px 18px;
+  font-family:'Heebo',sans-serif; font-size:13px; letter-spacing:.06em;
+  color:rgba(245,239,228,.85); text-decoration:none;
+  border-bottom:1px solid rgba(245,239,228,.07); transition:background .2s;
+}
+.wolt-drop a:last-child { border-bottom:none; }
+.wolt-drop a:hover { background:rgba(196,146,74,.15); color:#F5EFE4; }
 </style>
 </head>
 <body>
@@ -120,8 +137,14 @@ footer{background:var(--dark);color:#F5EFE4;padding:36px 44px;display:flex;justi
     <h1 class="hero-title">הנאה<em>ביתית.</em></h1>
     <p class="hero-tagline">עוגות בית · 8 סוגים · נעשות כל יום</p>
     <div class="hero-btns">
-      <a href="https://wolt.com" target="_blank" class="btn-caramel">הזמינו דרך וולט</a>
-      <a href="https://dallalmarket.co.il" target="_blank" class="btn-ghost">לאתר שוק דלאל</a>
+      <div class="wolt-wrap" style="position:relative;display:inline-block;">
+      <button class="btn-caramel wolt-toggle" onclick="this.parentNode.querySelector('.wolt-drop').classList.toggle('open')">הזמינו דרך וולט ▾</button>
+      <div class="wolt-drop">
+        <a href="https://wolt.com/he/isr/haifa/venue/dallal-market-haifa" target="_blank">שוק דלאל חיפה</a>
+        <a href="https://wolt.com/he/isr/haifa/venue/dallal-market-denia" target="_blank">שוק דלאל דניה</a>
+      </div>
+    </div>
+      <a href="https://www.dallalmarket.co.il/search/%D7%9E%D7%92%D7%95%D7%95%D7%9F%20%D7%A2%D7%95%D7%92%D7%95%D7%AA?filters=%7B%22brand%22:%5B1852%5D%7D" target="_blank" class="btn-ghost">לאתר שוק דלאל</a>
     </div>
   </div>
 </section>
@@ -211,8 +234,14 @@ footer{background:var(--dark);color:#F5EFE4;padding:36px 44px;display:flex;justi
   <h2 class="final-title">מזמינים עכשיו, מקבלים טרי.</h2>
   <p class="final-sub">זמין בשוק דלאל בחיפה · משלוח דרך וולט מדי יום</p>
   <div class="final-btns">
-    <a href="https://wolt.com" target="_blank" class="btn-wolt">🛵 הזמינו דרך וולט</a>
-    <a href="https://dallalmarket.co.il" target="_blank" class="btn-dark">לאתר שוק דלאל</a>
+    <div class="wolt-wrap" style="position:relative;display:inline-block;">
+      <button class="btn-wolt wolt-toggle" onclick="this.parentNode.querySelector('.wolt-drop').classList.toggle('open')">🛵 הזמינו דרך וולט ▾</button>
+      <div class="wolt-drop wolt-drop-up">
+        <a href="https://wolt.com/he/isr/haifa/venue/dallal-market-haifa" target="_blank">שוק דלאל חיפה</a>
+        <a href="https://wolt.com/he/isr/haifa/venue/dallal-market-denia" target="_blank">שוק דלאל דניה</a>
+      </div>
+    </div>
+    <a href="https://www.dallalmarket.co.il/search/%D7%9E%D7%92%D7%95%D7%95%D7%9F%20%D7%A2%D7%95%D7%92%D7%95%D7%AA?filters=%7B%22brand%22:%5B1852%5D%7D" target="_blank" class="btn-dark">לאתר שוק דלאל</a>
   </div>
 </div>
 
@@ -223,5 +252,13 @@ footer{background:var(--dark);color:#F5EFE4;padding:36px 44px;display:flex;justi
   <div class="foot-credit" style="font-size:10px;letter-spacing:.15em;color:rgba(245,239,228,.2);text-align:center;width:100%;padding-top:16px;border-top:1px solid rgba(245,239,228,.06);margin-top:8px;">design &amp; digital · 1dot Studio</div>
   <div class="foot-loc">חיפה ✦</div>
 </footer>
+
+<script>
+document.addEventListener('click', function(e){
+  if(!e.target.closest('.wolt-wrap')){
+    document.querySelectorAll('.wolt-drop').forEach(d=>d.classList.remove('open'));
+  }
+});
+</script>
 </body>
 </html>
